@@ -1,0 +1,16 @@
+body {
+    font: 12px Arial, sans-serif;
+    background: #ffffff;
+    color: rgb(50, 50, 50);
+}
+div#container {
+    background: blanchedalmond;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    height: 80%;
+    width: 80%;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 3px;
+}
