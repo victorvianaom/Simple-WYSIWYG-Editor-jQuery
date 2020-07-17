@@ -1,49 +1,52 @@
-import 'jquery'
+//import 'jquery'
 
-$(document).ready(function() {
-    $("div#container").focus()
+// The Selection.focusNode read-only property returns the Node in which the selection ends.
+// The Selection.anchorNode read-only property returns the Node in which the selection begins.
+
+$(document).ready(function() {//
+    $("div#container").focus()//
     $('button.toolbar-btn').click(function() {
         var data = this && $(this).data && $(this).data() // returns the last one if all the previous are truthy, this is basically a verification, all i want is $(this).data()
         if (data && data.format && document.execCommand) { // `this` in the context is the element being clicked
-            document.execCommand(data.format, false, null)
-            $('div#container').focus()
-        }
-    })
-    $('select.toolbar-ddl').change(function() {
-        var data = this && $(this).data && $(this).data()
-        if (data && data.format && document.execCommand) {
-            document.execCommand(data.format, false, this[this.selectedIndex].value)
-            this.selectedIndex = 0
-            $('div#container').focus()
-        }
-    })
-    $("button#btnCreateSelection").click(function() {
-        var container = document.getElementById("container")
-        container.innerHTML = "Here is some sample text for selection"
-        var range = document.createRange()
-        range.setStart(container.firstChild, 5)
-        range.setEnd(container.firstChild, 17)
+            document.execCommand(data.format, false, null)//
+            $('div#container').focus()//
+        }//
+    })//
+    $('select.toolbar-ddl').change(function() {//
+        var data = this && $(this).data && $(this).data()//
+        if (data && data.format && document.execCommand) {//
+            document.execCommand(data.format, false, this[this.selectedIndex].value)//
+            this.selectedIndex = 0//
+            $('div#container').focus()//
+        }//
+    })//
+    $("button#btnCreateSelection").click(function() {// calls setSelectionRange()
+        var container = document.getElementById("container")//
+        container.innerHTML = "Here is some sample text for selection"//
+        var range = document.createRange()// returns a 'Range' object
+        range.setStart(container.firstChild, 5) // range.setStart(startNode, startOffset);
+        range.setEnd(container.firstChild, 17) // range.setEnd(endNode, endOffset);
         setSelectionRange(range)
-    })
-    $("button#btnStoreSelection").click(function() {
-        window.selectedRange = getSelectionRange()
-    })
-    $("button#btnRestoreSelection").click(function() {
+    })//
+    $("button#btnStoreSelection").click(function() {//calls getSelectionRange()
+        window.selectedRange = getSelectionRange() // saves the selected range globally
+    })//
+    $("button#btnRestoreSelection").click(function() {//calls setSellectionRange()
         if (window.selectedRange) {
             setSelectionRange(window.selectedRange)
         }
     })
 })
 
-function getSelectionRange() {
-    if (window.getSelection) {
-        var sel = window.getSelection()
+function getSelectionRange() {//
+    if (window.getSelection) {//
+        var sel = window.getSelection() // returns a 'Selection' object
         if (sel.getRangeAt && sel.rangeCount) {
-            return sel.getRangeAt(0)
+            return sel.getRangeAt(0) //retunrns a 'Range' object
         } else {
-            var range = document.createRange()
-            range.setStart(sel.anchorNode, sel.anchorOffset)
-            range.setEnd(sel.focusNode, sel.focusOffset)
+            var range = document.createRange() // retunrs a new 'Range' object
+            range.setStart(sel.anchorNode, sel.anchorOffset) // passes Selection attributes to 'range'
+            range.setEnd(sel.focusNode, sel.focusOffset) // passes Selection attributes to 'range'
             return range
         }
     }
@@ -52,8 +55,8 @@ function getSelectionRange() {
 
 function setSelectionRange(range) {
     if (range && window.getSelection) {
-        var sel = window.getSelection()
-        sel.removeAllRanges()
-        sel.addRange(range)
+        var sel = window.getSelection() // returns a sellection object
+        sel.removeAllRanges() //The Selection.removeAllRanges() method removes all ranges from the selection, leaving the anchorNode and focusNode properties equal to null and leaving nothing selected.
+        sel.addRange(range) // selects the specified range in the screen, addRange() adds a range to a selection
     }
 }
