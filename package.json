@@ -1,0 +1,23 @@
+{
+  "name": "Simple-WYSIWYG-Editor-jQuery",
+  "version": "1.0.0",
+  "description": "This is my version of the WYSIWYG Editor taught in the chapter 22 of the book: \"Web Development with jQuery\" by Richard York",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorvianaom/Simple-WYSIWYG-Editor-jQuery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorvianaom/Simple-WYSIWYG-Editor-jQuery/issues"
+  },
+  "homepage": "https://github.com/victorvianaom/Simple-WYSIWYG-Editor-jQuery#readme",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
